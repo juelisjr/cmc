@@ -7,7 +7,7 @@
  */
 
 var cmc = function(form) {
-	initialize = function(form) {
+	initialize_cmc = function(form) {
 		form = jQuery(form);
 		form.submit(function(e) {
 			e.preventDefault();
@@ -27,6 +27,7 @@ var cmc = function(form) {
 				var div = form.parent('div');
                 if(data.error == true) {
 	                div.find('.cmc-error').css('display', 'block').html(data.html);
+	                form.find('.cmc-spinner').first().css('display', 'none');
                 } else {
                     if(data.html == 'updated') {
 	                    div.find('.cmc-updated').first().css('display', 'block');
@@ -35,11 +36,6 @@ var cmc = function(form) {
                     }
                 }
 
-				form.hide(400, function() {
-					jQuery('html, body').animate({
-						scrollTop: div.offset().top
-					}, 200);
-				});
 			});
 
 			return false;
@@ -72,5 +68,5 @@ var cmc = function(form) {
 	};
 
 	// Initialize handlers and attach validation to form
-	initialize(form);
+	initialize_cmc(form);
 };
